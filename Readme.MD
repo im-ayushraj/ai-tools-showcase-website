@@ -5,6 +5,14 @@
 ## Overview
 This is a modern, responsive gallery website that showcases the best AI tools for productivity, creativity, coding, and more. Users can browse, search, and filter a curated list of AI tools, each presented in a visually appealing card layout.
 
+## Homepage Screenshot
+
+![Homepage](images/homepage.png)
+
+## Tools Grid Screenshot
+
+![Tools Grid](images/tools-page.png)
+
 ## Features
 - Responsive design for all devices (desktop, tablet, mobile)
 - Search and filter AI tools by category
@@ -21,9 +29,6 @@ This is a modern, responsive gallery website that showcases the best AI tools fo
 3. No build steps or dependencies required—everything runs in the browser.
 
 ```
-![Homepage Screenshot](images/homepage.png)
-![Mobile View](images/mobile-view.png)
-```
 
 ## Customization
 - To add or edit tools, update the `aiTools` array in `index.html`.
@@ -31,3 +36,4 @@ This is a modern, responsive gallery website that showcases the best AI tools fo
 
 ## Author
 Made by Ayush Raj
+
