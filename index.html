@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Tools Explorer</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Styrene B font CDN -->
+  <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/styrene-b" />
+  <!-- Font Awesome CDN -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="min-h-screen bg-black text-orange-100" style="font-family: 'Styrene B', 'Inter', 'Arial', sans-serif;">
+
+
+
+  <section class="w-full px-6 md:px-12 lg:px-20 xl:px-32 py-20 flex flex-col md:flex-row items-center justify-between bg-black rounded-3xl shadow-xl backdrop-blur-lg mb-16 border-2 border-orange-500" style="margin-left:auto; margin-right:auto; margin-top:32px; margin-bottom:32px;">
+    <!-- Left: Hero Content -->
+    <div class="md:w-1/2 w-full flex flex-col justify-center items-start md:pr-12 mb-12 md:mb-0">
+      <h1 class="text-5xl font-extrabold text-orange-400 mb-6 leading-tight">Discover the Best <span class="text-orange-500">AI Tools</span></h1>
+      <p class="text-lg text-orange-200 mb-8 max-w-md">Explore a curated selection of AI tools for productivity, creativity, and coding. Find the perfect tool for your workflow and stay ahead in the AI era.</p>
+      <a href="#tools" class="inline-block px-8 py-3 rounded-full bg-orange-500 text-white font-bold shadow-lg hover:bg-orange-600 hover:scale-105 transition-all duration-300">Browse Tools</a>
+    </div>
+    <!-- Right: Featured Card -->
+    <div class="md:w-1/2 w-full flex justify-center items-center">
+      <div class="bg-orange-900 rounded-2xl shadow-2xl p-10 w-full max-w-sm flex flex-col items-start border-2 border-orange-400">
+        <span class="text-orange-200 text-base font-semibold uppercase tracking-wide mb-2">Featured Tool</span>
+        <h3 class="text-3xl font-extrabold text-orange-100 mb-2">ChatGPT</h3>
+        <p class="text-orange-100 text-base mb-4">Conversational AI that helps with writing, learning, and coding.</p>
+        <a href="https://chat.openai.com" target="_blank" class="inline-block px-6 py-2 rounded-full bg-orange-500 text-white font-bold shadow hover:bg-orange-600 hover:scale-105 transition-all duration-300">Try Now</a>
+      </div>
+    </div>
+  </section>
+            
+  </section>
+
+  <!-- Search & Filter -->
+  <section class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 mb-10 animate-slide-in" id="tools">
+    <input type="text" placeholder="Search AI tools..." class="w-full md:w-1/2 px-5 py-3 rounded-xl bg-black text-orange-100 placeholder-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500 transition" />
+    <select class="w-full md:w-1/4 px-5 py-3 rounded-xl bg-orange-100 text-black focus:outline-none focus:ring-2 focus:ring-orange-500 transition">
+      <option>All Categories</option>
+      <option>Chatbot</option>
+      <option>Image Generation</option>
+      <option>Productivity</option>
+      <option>Search</option>
+      <option>Code</option>
+    </select>
+  </section>
+
+  <!-- Tools Grid (dynamic only) -->
+  <section id="toolsGrid" class="w-full px-2 sm:px-6 md:px-12 lg:px-20 xl:px-32 columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-8 pt-4 sm:pt-8 pb-16 sm:pb-24 [column-fill:_balance]" style="margin-left:auto; margin-right:auto; margin-top:16px; margin-bottom:16px;"></section>
+  <div class="flex justify-center mb-16">
+    <button id="seeMoreBtn" class="px-8 py-3 rounded-full bg-orange-500 text-white font-bold shadow-lg hover:bg-orange-600 hover:scale-105 transition-all duration-300">See More</button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-black shadow-inner py-8 text-center text-base text-orange-200 mt-10 rounded-t-2xl">
+    Made by Ayush Raj · © 2025
+  </footer>
+
+  <!-- AI Tools Data, Card Rendering, Search & Filter JS Logic -->
+  <script>
+    // AI tools data (50 tools, name, desc, link, tags, icon)
+    const aiTools = [
+      {
+        name: "ChatGPT",
+        desc: "Conversational AI that helps with writing, learning, and coding.",
+        link: "https://chat.openai.com",
+        tags: ["Chatbot", "Productivity"],
+        icon: "robot",
+        color: "indigo-400"
+      },
+      {
+        name: "Claude",
+        desc: "Anthropic's AI assistant for safe and helpful responses.",
+        link: "https://claude.ai",
+        tags: ["Chatbot", "Productivity"],
+        icon: "lightbulb",
+        color: "yellow-300"
+      },
+      {
+        name: "GitHub Copilot",
+        desc: "AI pair programmer that writes code with you in real-time.",
+        link: "https://github.com/features/copilot",
+        tags: ["Code", "Productivity"],
+        icon: "code",
+        color: "green-400"
+      },
+      {
+        name: "Midjourney",
+        desc: "AI-powered image generation for creative projects and art.",
+        link: "https://www.midjourney.com/",
+        tags: ["Image Generation", "Creativity"],
+        icon: "image",
+        color: "pink-400"
+      },
+      {
+        name: "Gemini",
+        desc: "Google's advanced AI for search, chat, and productivity.",
+        link: "https://gemini.google.com/",
+        tags: ["Chatbot", "Search"],
+        icon: "gem",
+        color: "blue-400"
+      },
+      {
+        name: "Notion AI",
+        desc: "AI-powered writing, organization, and productivity in Notion.",
+        link: "https://www.notion.so/product/ai",
+        tags: ["Productivity", "Writing"],
+        icon: "feather-alt",
+        color: "gray-300"
+      },
+      {
+        name: "Perplexity",
+        desc: "AI-powered search engine for fast, accurate answers.",
+        link: "https://www.perplexity.ai/",
+        tags: ["Search", "Productivity"],
+        icon: "search",
+        color: "purple-400"
+      },
+      {
+        name: "DALL·E",
+        desc: "OpenAI's image generation tool for creative visuals.",
+        link: "https://labs.openai.com/",
+        tags: ["Image Generation", "Creativity"],
+        icon: "paint-brush",
+        color: "pink-300"
+      },
+      {
+        name: "Llama",
+        desc: "Meta's open-source large language model for research and development.",
+        link: "https://ai.meta.com/llama/",
+        tags: ["Language Model", "Research"],
+        icon: "hippo",
+        color: "orange-400"
+      },
+      // ...add 41 more tools below...
+      { name: "Stable Diffusion", desc: "Open-source image generation model for creative projects.", link: "https://stability.ai/", tags: ["Image Generation", "Creativity"], icon: "palette", color: "purple-300" },
+      { name: "Bard", desc: "Google's conversational AI for search and productivity.", link: "https://bard.google.com/", tags: ["Chatbot", "Search"], icon: "comment-dots", color: "blue-300" },
+      { name: "AlphaCode", desc: "DeepMind's AI for competitive programming and code generation.", link: "https://deepmind.com/research/highlighted-research/alphacode", tags: ["Code", "Research"], icon: "terminal", color: "green-300" },
+      { name: "Copy.ai", desc: "AI-powered copywriting and content generation.", link: "https://www.copy.ai/", tags: ["Writing", "Productivity"], icon: "file-alt", color: "pink-400" },
+      { name: "Jasper", desc: "AI writing assistant for marketing and content creation.", link: "https://www.jasper.ai/", tags: ["Writing", "Productivity"], icon: "pen-nib", color: "yellow-400" },
+      { name: "Synthesia", desc: "AI video generation platform for creating avatars and presentations.", link: "https://www.synthesia.io/", tags: ["Video", "Creativity"], icon: "video", color: "purple-400" },
+      { name: "Descript", desc: "AI-powered audio and video editing platform.", link: "https://www.descript.com/", tags: ["Audio", "Video"], icon: "music", color: "blue-400" },
+      { name: "RunwayML", desc: "Creative toolkit for AI-powered video, image, and text generation.", link: "https://runwayml.com/", tags: ["Video", "Image Generation"], icon: "film", color: "green-400" },
+      { name: "Hugging Face", desc: "Open-source platform for machine learning models and datasets.", link: "https://huggingface.co/", tags: ["Language Model", "Research"], icon: "smile", color: "yellow-300" },
+      { name: "Replika", desc: "AI companion chatbot for conversation and mental wellness.", link: "https://replika.com/", tags: ["Chatbot", "Wellness"], icon: "user-astronaut", color: "pink-300" },
+      { name: "You.com", desc: "AI-powered search engine and productivity platform.", link: "https://you.com/", tags: ["Search", "Productivity"], icon: "search", color: "indigo-400" },
+      { name: "AIVA", desc: "AI music composition for creators and artists.", link: "https://www.aiva.ai/", tags: ["Music", "Creativity"], icon: "headphones", color: "purple-400" },
+      { name: "Soundraw", desc: "AI music generator for content creators.", link: "https://soundraw.io/", tags: ["Music", "Creativity"], icon: "music", color: "green-400" },
+      { name: "Lumen5", desc: "AI-powered video creation for social media and marketing.", link: "https://lumen5.com/", tags: ["Video", "Productivity"], icon: "video", color: "yellow-400" },
+      { name: "QuillBot", desc: "AI paraphrasing and grammar checking tool.", link: "https://quillbot.com/", tags: ["Writing", "Productivity"], icon: "edit", color: "blue-400" },
+      { name: "DeepL", desc: "AI-powered translation for global communication.", link: "https://www.deepl.com/", tags: ["Translation", "Productivity"], icon: "language", color: "indigo-400" },
+      { name: "Grammarly", desc: "AI writing assistant for grammar and style.", link: "https://grammarly.com/", tags: ["Writing", "Productivity"], icon: "spell-check", color: "green-400" },
+      { name: "Pictory", desc: "AI video editing and summarization platform.", link: "https://pictory.ai/", tags: ["Video", "Productivity"], icon: "film", color: "pink-400" },
+      { name: "Tome", desc: "AI-powered storytelling and presentation creation.", link: "https://tome.app/", tags: ["Productivity", "Creativity"], icon: "book-open", color: "purple-400" },
+      { name: "Fireflies.ai", desc: "AI meeting assistant for transcription and notes.", link: "https://fireflies.ai/", tags: ["Productivity", "Audio"], icon: "microphone", color: "yellow-400" },
+      { name: "Otter.ai", desc: "AI-powered voice transcription and meeting notes.", link: "https://otter.ai/", tags: ["Audio", "Productivity"], icon: "microphone-alt", color: "blue-400" },
+      { name: "Murf.ai", desc: "AI voice generator for presentations and content.", link: "https://murf.ai/", tags: ["Audio", "Creativity"], icon: "volume-up", color: "green-400" },
+      { name: "Speechify", desc: "AI text-to-speech for productivity and accessibility.", link: "https://speechify.com/", tags: ["Audio", "Productivity"], icon: "assistive-listening-systems", color: "purple-400" },
+      { name: "Beautiful.ai", desc: "AI-powered presentation design platform.", link: "https://www.beautiful.ai/", tags: ["Productivity", "Creativity"], icon: "chart-bar", color: "pink-400" },
+      { name: "Synthesys", desc: "AI video and voice generation for marketing.", link: "https://synthesys.io/", tags: ["Video", "Audio"], icon: "video", color: "yellow-400" },
+      { name: "Magic Eraser", desc: "AI-powered image background removal tool.", link: "https://www.magiceraser.io/", tags: ["Image Generation", "Productivity"], icon: "eraser", color: "blue-400" },
+      { name: "Remove.bg", desc: "AI image background remover for quick edits.", link: "https://www.remove.bg/", tags: ["Image Generation", "Productivity"], icon: "image", color: "indigo-400" },
+      { name: "LetsEnhance.io", desc: "AI image upscaling and enhancement.", link: "https://letsenhance.io/", tags: ["Image Generation", "Productivity"], icon: "expand", color: "green-400" },
+      { name: "Playground AI", desc: "AI image creation and editing platform.", link: "https://playgroundai.com/", tags: ["Image Generation", "Creativity"], icon: "paint-brush", color: "purple-400" },
+      { name: "Leonardo.Ai", desc: "AI-powered creative image generation.", link: "https://leonardo.ai/", tags: ["Image Generation", "Creativity"], icon: "palette", color: "pink-400" },
+      { name: "Pixlr", desc: "AI-powered online photo editor.", link: "https://pixlr.com/", tags: ["Image Generation", "Productivity"], icon: "camera-retro", color: "yellow-400" },
+      { name: "Canva AI", desc: "AI design tools for presentations, images, and more.", link: "https://www.canva.com/ai/", tags: ["Creativity", "Productivity"], icon: "paint-roller", color: "blue-400" },
+      { name: "PhotoRoom", desc: "AI photo editing and background removal.", link: "https://www.photoroom.com/", tags: ["Image Generation", "Productivity"], icon: "camera", color: "indigo-400" },
+      { name: "Veed.io", desc: "AI-powered video editing platform.", link: "https://www.veed.io/", tags: ["Video", "Productivity"], icon: "video", color: "green-400" },
+      { name: "Kapwing", desc: "AI video editing and meme creation.", link: "https://www.kapwing.com/", tags: ["Video", "Creativity"], icon: "film", color: "purple-400" },
+      { name: "Superhuman", desc: "AI-powered email productivity platform.", link: "https://superhuman.com/", tags: ["Productivity", "Email"], icon: "envelope", color: "pink-400" },
+      { name: "Mailmodo", desc: "AI email marketing automation.", link: "https://www.mailmodo.com/", tags: ["Email", "Productivity"], icon: "envelope-open-text", color: "yellow-400" },
+      { name: "Compose.ai", desc: "AI writing assistant for emails and documents.", link: "https://www.compose.ai/", tags: ["Writing", "Productivity"], icon: "keyboard", color: "blue-400" },
+      { name: "Writesonic", desc: "AI-powered writing and content creation.", link: "https://writesonic.com/", tags: ["Writing", "Productivity"], icon: "pen", color: "indigo-400" },
+      { name: "Wordtune", desc: "AI writing assistant for better communication.", link: "https://www.wordtune.com/", tags: ["Writing", "Productivity"], icon: "highlighter", color: "green-400" },
+      { name: "SurferSEO", desc: "AI-powered SEO optimization for content.", link: "https://surferseo.com/", tags: ["Writing", "Productivity"], icon: "search-dollar", color: "purple-400" },
+      { name: "Frase.io", desc: "AI-powered content research and optimization.", link: "https://www.frase.io/", tags: ["Writing", "Productivity"], icon: "search", color: "pink-400" },
+      { name: "Scalenut", desc: "AI content creation and SEO platform.", link: "https://www.scalenut.com/", tags: ["Writing", "Productivity"], icon: "chart-line", color: "yellow-400" },
+      { name: "INK", desc: "AI writing and SEO assistant.", link: "https://inkforall.com/", tags: ["Writing", "Productivity"], icon: "pen-fancy", color: "blue-400" },
+      { name: "AI Dungeon", desc: "AI-powered interactive storytelling game.", link: "https://play.aidungeon.io/", tags: ["Creativity", "Game"], icon: "gamepad", color: "indigo-400" },
+      { name: "ChatSonic", desc: "AI chatbot for content creation and productivity.", link: "https://chatsonic.com/", tags: ["Chatbot", "Productivity"], icon: "comments", color: "green-400" },
+      { name: "Turing", desc: "AI-powered developer hiring and matching.", link: "https://www.turing.com/", tags: ["Code", "Productivity"], icon: "user-tie", color: "purple-400" },
+      { name: "OpenAI API", desc: "API access to OpenAI's models for developers.", link: "https://platform.openai.com/", tags: ["Code", "Language Model"], icon: "cloud", color: "pink-400" },
+      { name: "Google Cloud AI", desc: "AI and ML services for developers and businesses.", link: "https://cloud.google.com/products/ai", tags: ["Code", "Productivity"], icon: "cloud", color: "yellow-400" },
+      { name: "AWS AI Services", desc: "Amazon's AI and ML cloud services.", link: "https://aws.amazon.com/machine-learning/", tags: ["Code", "Productivity"], icon: "cloud", color: "blue-400" },
+      { name: "Azure AI", desc: "Microsoft's AI and ML cloud platform.", link: "https://azure.microsoft.com/en-us/services/machine-learning/", tags: ["Code", "Productivity"], icon: "cloud", color: "indigo-400" },
+      { name: "IBM Watson", desc: "AI-powered business solutions and analytics.", link: "https://www.ibm.com/watson", tags: ["Productivity", "Research"], icon: "brain", color: "green-400" },
+      { name: "Cohere", desc: "AI language models for business and research.", link: "https://cohere.com/", tags: ["Language Model", "Research"], icon: "comments", color: "purple-400" },
+      { name: "Anthropic API", desc: "API access to Anthropic's Claude models.", link: "https://www.anthropic.com/products/claude", tags: ["Code", "Language Model"], icon: "cloud", color: "pink-400" },
+      { name: "Meta AI", desc: "Meta's AI research and open-source models.", link: "https://ai.meta.com/", tags: ["Language Model", "Research"], icon: "brain", color: "yellow-400" },
+      { name: "Google Gemini API", desc: "API access to Gemini models for developers.", link: "https://ai.google.dev/", tags: ["Code", "Language Model"], icon: "cloud", color: "blue-400" },
+      { name: "DeepMind", desc: "AI research and breakthroughs from DeepMind.", link: "https://deepmind.com/", tags: ["Research", "Language Model"], icon: "brain", color: "indigo-400" },
+    ];
+
+    // Card rendering function
+    function renderCards(tools) {
+      const grid = document.getElementById('toolsGrid');
+      grid.innerHTML = '';
+      tools.forEach(tool => {
+        // Variable height/width, modern gallery style
+        grid.innerHTML += `
+          <div class="tools-grid-card break-inside-avoid relative bg-black bg-opacity-60 border border-orange-400 border-opacity-30 rounded-xl shadow-xl hover:scale-[1.02] hover:bg-orange-900 transition-all duration-300 mb-4 sm:mb-8 p-4 sm:p-6 overflow-hidden animate-zoom-in" style="width:auto; min-width:180px; max-width:100%;">
+            <div class="absolute top-4 right-4 z-10">
+              <span class="bg-orange-500 bg-opacity-90 text-white rounded-xl shadow p-3 flex items-center justify-center" style="font-size:1.8rem;"><i class="fas fa-${tool.icon}"></i></span>
+            </div>
+            <div class="flex flex-col gap-2">
+              <h3 class="text-base sm:text-lg font-bold text-orange-100 mb-1">${tool.name}</h3>
+              <p class="text-orange-200 mb-2 text-xs sm:text-sm">${tool.desc}</p>
+              <div class="flex flex-wrap gap-2 mb-2">
+                ${tool.tags.map(tag => `<span class="px-2 py-1 rounded bg-orange-500 bg-opacity-70 text-xs text-white font-medium">${tag}</span>`).join('')}
+              </div>
+              <a href="${tool.link}" target="_blank" class="mt-2 sm:mt-4 px-4 sm:px-8 py-2 sm:py-3 rounded-full bg-orange-500 text-white font-bold shadow hover:bg-orange-900 transition-all duration-300 text-xs sm:text-base mx-auto flex justify-center items-center">Visit</a>
+            </div>
+            <!-- Decorative Curves Bottom Right -->
+            <div class="absolute bottom-0 right-0 z-0 pointer-events-none" style="width:120px; height:120px;">
+              <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute; bottom:0; right:0;">
+                <path d="M120 120 Q80 80 120 40" stroke="#FF8800" stroke-width="10" fill="none" opacity="0.25" />
+                <path d="M120 120 Q100 100 120 80" stroke="#FF8800" stroke-width="8" fill="none" opacity="0.18" />
+                <path d="M120 120 Q110 110 120 100" stroke="#FF8800" stroke-width="6" fill="none" opacity="0.12" />
+              </svg>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // Pagination logic
+    let shown = 0;
+    const PAGE_SIZE = 12;
+    function showNextPage() {
+      const next = aiTools.slice(0, shown + PAGE_SIZE);
+      renderCards(next);
+      shown = next.length;
+      document.getElementById('seeMoreBtn').style.display = shown >= aiTools.length ? 'none' : '';
+      filterCards();
+    }
+
+    // Search & filter logic
+    const searchInput = document.querySelector('input[placeholder="Search AI tools..."]');
+    const categorySelect = document.querySelector('select');
+    function filterCards() {
+      const search = searchInput.value.toLowerCase();
+      const category = categorySelect.value;
+      const cards = document.querySelectorAll('.tools-grid-card');
+      cards.forEach(card => {
+        const name = card.querySelector('h3').textContent.toLowerCase();
+        const desc = card.querySelector('p').textContent.toLowerCase();
+        const tags = Array.from(card.querySelectorAll('span')).map(s => s.textContent.toLowerCase());
+        const matchesSearch = name.includes(search) || desc.includes(search) || tags.some(t => t.includes(search));
+        const matchesCategory = category === 'All Categories' || tags.includes(category.toLowerCase());
+        if (matchesSearch && matchesCategory) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    searchInput.addEventListener('input', filterCards);
+    categorySelect.addEventListener('change', filterCards);
+
+    // See More button logic
+    document.getElementById('seeMoreBtn').addEventListener('click', showNextPage);
+
+    // Initial render
+    showNextPage();
+  </script>
+</body>
+</html>
