@@ -28,3 +28,11 @@ This is a modern, responsive gallery website that showcases the best AI tools fo
 
 ## Author
 Made by Ayush Raj
+
+## Homepage Screenshot
+
+![Homepage](images/homepage.png)
+
+## Tools Grid Screenshot
+
+![Tools Grid](images/tools-page.png)
