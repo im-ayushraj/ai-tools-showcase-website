@@ -21,9 +21,6 @@ This is a modern, responsive gallery website that showcases the best AI tools fo
 3. No build steps or dependencies required—everything runs in the browser.
 
 ```
-![Homepage Screenshot](images/homepage.png)
-![Mobile View](images/mobile-view.png)
-```
 
 ## Customization
 - To add or edit tools, update the `aiTools` array in `index.html`.
