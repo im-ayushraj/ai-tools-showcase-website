@@ -20,9 +20,6 @@ This is a modern, responsive gallery website that showcases the best AI tools fo
 2. Open `index.html` in your browser.
 3. No build steps or dependencies required—everything runs in the browser.
 
-## How to Add Images
-You can include screenshots or images of the website in this README. Place your images in the project folder and reference them like this:
-
 ```
 ![Homepage Screenshot](images/homepage.png)
 ![Mobile View](images/mobile-view.png)
